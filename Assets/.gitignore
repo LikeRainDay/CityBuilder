@@ -1,0 +1,11 @@
+Library/
+Temp/
+Logs/
+ProjectSettings/
+UserSettings/
+obj/
+Packages/
+.idea/
+
+Assembly-CShar*.*
+*.sln
