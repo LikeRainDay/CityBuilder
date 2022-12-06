@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Model;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -10,7 +9,7 @@ public class UIController : MonoBehaviour
     // define ui button controller
     // 
     public Action OnRoadPlacement;
-    public Action<Model.HouseModel> OnHousePlacement;
+    public Action<HouseModel> OnHousePlacement;
     public Button placeRoadButton, placeHouseButton;
 
     public Color outlineColor;
