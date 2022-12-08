@@ -9,7 +9,7 @@ public class UIController : MonoBehaviour
     // define ui button controller
     // 
     public Action OnRoadPlacement;
-    public Action<HouseModel> OnHousePlacement;
+    public Action OnHousePlacement, OnSpecialPlacment;
     public Button placeRoadButton, placeHouseButton;
 
     public Color outlineColor;
@@ -30,12 +30,12 @@ public class UIController : MonoBehaviour
         {
             ResetButtonColor();
             ModifyOutline(placeHouseButton);
-            var houseModel = new HouseModel
-            {
-                content = "",
-                des = ""
-            };
-            OnHousePlacement?.Invoke(houseModel);
+            // var houseModel = new HouseModel
+            // {
+            //     content = "",
+            //     des = ""
+            // };
+            OnHousePlacement?.Invoke();
         });
     }
 

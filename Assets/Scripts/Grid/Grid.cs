@@ -118,7 +118,7 @@ public class Grid
         return adjacentCells;
     }
 
-    public List<Point> GetAdjacentCells(int x, int y, CellType type)
+    public List<Point> GetAdjacentCellOfType(int x, int y, CellType type)
     {
         var allAdjacentCells = GetAllAdjacentCells(x, y);
         for (var i = allAdjacentCells.Count - 1; i >= 0; i--)

@@ -3,19 +3,20 @@ using UnityEngine;
 
 namespace SVS
 {
-    public class AudioPlayer: MonoBehaviour
+    public class AudioPlayer : MonoBehaviour
     {
         public AudioClip placementSound;
         public AudioSource audioSource;
 
-        private static AudioPlayer _instance;
+        public static AudioPlayer _instance;
 
         private void Awake()
         {
             if (_instance == null)
             {
                 _instance = this;
-            }else if (_instance != this)
+            }
+            else if (_instance != this)
             {
                 Destroy(gameObject);
             }
@@ -25,7 +26,7 @@ namespace SVS
         {
             if (placementSound != null)
             {
-               audioSource.PlayOneShot(placementSound); 
+                audioSource.PlayOneShot(placementSound);
             }
         }
     }
