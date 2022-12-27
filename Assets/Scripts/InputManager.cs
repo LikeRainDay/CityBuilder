@@ -36,16 +36,15 @@ public class InputManager : MonoBehaviour
         _cameraMovementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void CheckClickHoldEvent()
     {
-        if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject() == false)
-        {
-            var position = RaycastGround();
-            if (position != null)
-            {
-                OnMouseHold?.Invoke(position.Value);
-            }
-        }
+      if (!Input.GetMouseButton(0) || EventSystem.current.IsPointerOverGameObject() != false) return;
+      var position = RaycastGround();
+      if (position != null)
+      {
+        OnMouseHold?.Invoke(position.Value);
+      }
     }
 
     private void CheckClickUpEvent()
@@ -56,16 +55,14 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void CheckClickDownEvent()
     {
-        if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject() == false)
-
-        {
-            var position = RaycastGround();
-            if (position != null)
-            {
-                OnMouseClick?.Invoke(position.Value);
-            }
-        }
+      if (!Input.GetMouseButton(0) || EventSystem.current.IsPointerOverGameObject()) return;
+      var position = RaycastGround();
+      if (position != null)
+      {
+        OnMouseClick?.Invoke(position.Value);
+      }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using SVS;
@@ -8,11 +7,11 @@ public class RoadManager : MonoBehaviour
 {
     public PlacementManager placementManager;
 
-    public List<Vector3Int> temporaryPlacementPositions = new List<Vector3Int>();
-    public List<Vector3Int> roadPositionsToRecheck = new List<Vector3Int>();
+    public List<Vector3Int> temporaryPlacementPositions = new();
+    public List<Vector3Int> roadPositionsToRecheck = new();
 
     private Vector3Int startPosition;
-    private bool placementMode = false;
+    private bool placementMode;
 
     public RoadFixer roadFixer;
 
@@ -40,7 +39,7 @@ public class RoadManager : MonoBehaviour
 
             placementMode = true;
             startPosition = position;
-            
+
             temporaryPlacementPositions.Add(position);
             placementManager.PlacementTemporaryStructure(position, roadFixer.deadEnd, CellType.Road);
         }
@@ -48,16 +47,16 @@ public class RoadManager : MonoBehaviour
         {
             placementManager.RemoveAllTemporaryStructures();
             temporaryPlacementPositions.Clear();
-            
+
             foreach (var positionsToFix in roadPositionsToRecheck)
             {
                 roadFixer.FixRoadAtPosition(placementManager, positionsToFix);
             }
-            
+
             roadPositionsToRecheck.Clear();
 
             temporaryPlacementPositions = placementManager.GetPathBetween(startPosition, position);
-            
+
             foreach (var temporaryPosition in temporaryPlacementPositions)
             {
                 if (placementManager.CheckIfPositionIsFree(temporaryPosition)==false)
@@ -78,12 +77,9 @@ public class RoadManager : MonoBehaviour
         {
             roadFixer.FixRoadAtPosition(placementManager, temporaryPosition);
             var neighbours = placementManager.GetNeighboursOfTypeFor(temporaryPosition, CellType.Road);
-            foreach (var roadposition in neighbours)
+            foreach (var disposition in neighbours.Where(disposition => roadPositionsToRecheck.Contains(disposition) == false))
             {
-                if (roadPositionsToRecheck.Contains(roadposition) == false)
-                {
-                    roadPositionsToRecheck.Add(roadposition);
-                }
+              roadPositionsToRecheck.Add(disposition);
             }
         }
 

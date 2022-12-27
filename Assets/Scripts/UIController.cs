@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Model;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     // define ui button controller
-    // 
+    //
     public Action OnRoadPlacement;
     public Action OnHousePlacement, OnSpecialPlacment;
     public Button placeRoadButton, placeHouseButton;
@@ -18,7 +17,7 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        _buttonList = new() { placeRoadButton, placeHouseButton };
+        _buttonList = new List<Button> { placeRoadButton, placeHouseButton };
         placeRoadButton.onClick.AddListener(() =>
         {
             ResetButtonColor();
